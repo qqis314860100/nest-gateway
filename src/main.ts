@@ -12,7 +12,7 @@ import { TransformInterceptor } from './common/interceptors/transform.intercepto
 declare const module: any;
 
 async function bootstrap() {
-  console.log('module: ' + module);
+  console.log('module: ', JSON.stringify(module));
   if (module.hot) {
     module.hot.accept();
     module.hot.dispose(() => app.close());
