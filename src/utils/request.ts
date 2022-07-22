@@ -19,9 +19,9 @@ const request = async ({ url, option = {} }) => {
 interface IMethodV {
   url: string;
   method?: Method;
-  headers?: { [key: string]: string };
-  params?: Record<string, string>;
-  query?: Record<string, string>;
+  headers?: Record<string, string>;
+  params?: Record<string, any>;
+  query?: { [name: string]: any };
 }
 
 export interface IRequest {
@@ -32,7 +32,9 @@ export interface IRequest {
 /**
  * @description: 带 version 的通用 api 请求
  */
-
+/**
+ * @description: 带 version 的通用 api 请求
+ */
 const methodV = async ({
   url,
   method,
@@ -40,35 +42,36 @@ const methodV = async ({
   params = {},
   query = {},
 }: IMethodV): Promise<IRequest> => {
-  let sendURL = '';
+  let sendUrl = '';
   if (/^(http:\/\/|https:\/\/)/.test(url)) {
-    sendURL = url;
+    sendUrl = url;
   } else {
-    sendURL = `${FEISHU_URL}${url}`;
+    sendUrl = `${FEISHU_URL}${url}`;
   }
-
+  console.log(sendUrl);
   try {
     return new Promise((resolve, reject) => {
       axios({
         headers: {
-          'Content-Type': 'application/json;charset=utf-8',
+          'Content-Type': 'application/json; charset=utf-8',
           ...headers,
         },
-        url: sendURL,
+        url: sendUrl,
         method,
         params: query,
-        data: { ...params },
+        data: {
+          ...params,
+        },
       })
         .then(({ data, status }) => {
           resolve({ data, code: status });
         })
-        .catch((err) => {
-          reject(err);
+        .catch((error) => {
+          reject(error);
         });
     });
   } catch (error) {
     throw error;
   }
 };
-
 export { request, methodV };

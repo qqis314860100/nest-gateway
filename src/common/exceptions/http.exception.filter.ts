@@ -7,7 +7,7 @@ import {
   HttpStatus,
   HttpException,
 } from '@nestjs/common';
-import { BusinessException } from './business.exception.filter';
+import { BusinessException } from './business.exception';
 
 @Catch(HttpException)
 export class HttpExceptionFilter implements ExceptionFilter {

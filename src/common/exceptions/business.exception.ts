@@ -6,7 +6,6 @@ type BusinessError = {
   message: string;
 };
 
-// 业务异常处理
 export class BusinessException extends HttpException {
   constructor(err: BusinessError | string) {
     if (typeof err === 'string') {
@@ -21,7 +20,21 @@ export class BusinessException extends HttpException {
   static throwForbidden() {
     throw new BusinessException({
       code: BUSINESS_ERROR_CODE.ACCESS_FORBIDDEN,
-      message: '抱歉，您无此权限',
+      message: '抱歉哦，您无此权限!',
+    });
+  }
+
+  static throwPermissionDisabled() {
+    throw new BusinessException({
+      code: BUSINESS_ERROR_CODE.PERMISSION_DISABLED,
+      message: '权限已禁用',
+    });
+  }
+
+  static throwUserDisabled() {
+    throw new BusinessException({
+      code: BUSINESS_ERROR_CODE.USER_DISABLED,
+      message: '用户已冻结',
     });
   }
 }

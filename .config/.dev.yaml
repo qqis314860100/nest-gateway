@@ -4,5 +4,5 @@ TEST_VALUE:
 FEISHU_CONFIG:
   FEISHU_URL: https://open.feishu.cn/open-apis
   FEISHU_API_HOST: https://open.feishu.cn
-  FEISHU_APP_ID: balabalabala
-  FEISHU_APP_SECRET: balabalabala
+  FEISHU_APP_ID: 'cli_a258240a2a38d013'
+  FEISHU_APP_SECRET: 'BfLrUZUL37mrKBR8vx8Zob4rQ0tEuLWe'
