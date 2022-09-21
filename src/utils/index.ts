@@ -8,7 +8,7 @@ export const getEnv = () => {
 };
 
 // 读取项目配置
-export const getConfig = () => {
+export const getConfig = (type?: string) => {
   const environment = getEnv();
   // process.env 为nodejs中的环境对象,保存着系统的环境的变量信息
   // process.cwd() 方法返回 Node.js 进程的当前工作目录。
@@ -17,5 +17,8 @@ export const getConfig = () => {
 
   const file = fs.readFileSync(yamlPath, 'utf8');
   const config = parse(file);
+  if (type) {
+    return config[type];
+  }
   return config;
 };

@@ -13,7 +13,6 @@ import { generateDocument } from './doc';
 declare const module: any;
 
 async function bootstrap() {
-  console.log('module: ', JSON.stringify(module));
   if (module.hot) {
     module.hot.accept();
     module.hot.dispose(() => app.close());
@@ -34,6 +33,6 @@ async function bootstrap() {
   app.useGlobalInterceptors(new TransformInterceptor());
   // 全局异常过滤器
   app.useGlobalFilters(new AllExceptionFilter(), new HttpExceptionFilter());
-  await app.listen(3000);
+  await app.listen(3331);
 }
 bootstrap();
